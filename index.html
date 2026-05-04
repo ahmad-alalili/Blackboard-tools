@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!--
+================================================================
+  Blackboard Questions Generator
+  Developed by: Eng. Ahmed Saeed Al-Alili
+  © 2026 All Rights Reserved
+================================================================
+-->
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -28,7 +35,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* منع التحديد على عناصر الواجهة (لكن السماح به في الحقول) */
+  
   body {
     user-select: none;
     -webkit-user-select: none;
@@ -81,6 +88,37 @@
   }
   @media (max-width: 850px) {
     .grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .card { padding: 18px; box-shadow: 4px 4px 0 var(--ink); }
+    .type-row {
+      grid-template-columns: 1fr 90px;
+      padding: 12px;
+    }
+    .type-row input[type="number"] {
+      height: 46px;
+      font-size: 16px;
+    }
+    .diff-count {
+      height: 46px;
+      font-size: 16px;
+    }
+    .matrix-cell {
+      height: 44px;
+      min-width: 45px;
+      font-size: 15px;
+    }
+    .matrix th, .matrix td {
+      padding: 4px 2px;
+    }
+    .matrix tbody th {
+      font-size: 11px;
+      padding-right: 4px;
+    }
+    .matrix thead th {
+      font-size: 10px;
+    }
   }
   .card {
     background: var(--surface);
@@ -150,7 +188,7 @@
     margin-top: 8px;
     line-height: 1.6;
   }
-  /* محدد وضع التحرير: بسيط/متقدم */
+  
   .editor-mode {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -212,7 +250,7 @@
     color: var(--ink-soft);
     line-height: 1.6;
   }
-  /* قسم أنواع الأسئلة */
+  
   .types-section {
     background: var(--bg);
     border: 2px solid var(--line);
@@ -238,11 +276,11 @@
   }
   .type-row {
     display: grid;
-    grid-template-columns: 1fr 90px;
+    grid-template-columns: 1fr 100px;
     gap: 10px;
     align-items: center;
     margin-bottom: 8px;
-    padding: 8px;
+    padding: 10px 12px;
     background: white;
     border-radius: 6px;
     border: 1px solid var(--line);
@@ -266,17 +304,38 @@
     font-size: 16px;
   }
   .type-row input[type="number"] {
-    padding: 6px 8px;
+    padding: 10px 8px;
     width: 100%;
+    height: 42px;
     text-align: center;
     font-weight: 700;
-    border: 1px solid var(--line);
+    font-size: 15px;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    -moz-appearance: textfield;
+  }
+  .type-row input[type="number"]::-webkit-outer-spin-button,
+  .type-row input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .type-row input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: white;
   }
   .type-row input[type="number"]:disabled {
     background: #f5f5f5;
     color: #aaa;
   }
-  /* قسم الخيارات الإضافية */
+  .type-row input[type="number"]::placeholder,
+  .diff-count::placeholder,
+  .matrix-cell::placeholder {
+    color: #c5c0b3;
+    opacity: 1;
+    font-weight: 400;
+  }
+  
   .options-section {
     background: var(--bg);
     border: 2px solid var(--line);
@@ -309,7 +368,7 @@
     margin-top: 2px;
     font-weight: 400;
   }
-  /* مفتاح Toggle */
+  
   .switch {
     position: relative;
     display: inline-block;
@@ -340,7 +399,7 @@
   input:checked + .slider { background-color: var(--accent); }
   input:checked + .slider:before { transform: translateX(20px); }
 
-  /* قسم الصعوبة */
+  
   .difficulty-section {
     background: var(--bg);
     border: 2px solid var(--line);
@@ -399,7 +458,7 @@
     color: var(--ink-soft);
     margin-bottom: 10px;
   }
-  /* المستوى الواحد */
+  
   .diff-slider-wrap {
     padding: 10px 6px;
     background: white;
@@ -451,7 +510,7 @@
     font-weight: 700;
     font-size: 13px;
   }
-  /* المزيج المخصص */
+  
   .diff-row {
     display: grid;
     grid-template-columns: 30px 1fr 80px;
@@ -467,13 +526,25 @@
   .diff-name { font-size: 13px; }
   .diff-count {
     width: 100%;
-    padding: 6px;
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    height: 42px;
+    padding: 8px;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
     text-align: center;
     font-weight: 700;
+    font-size: 15px;
+    -moz-appearance: textfield;
   }
-  /* التدرج */
+  .diff-count::-webkit-outer-spin-button,
+  .diff-count::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .diff-count:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  
   .prog-row {
     display: flex;
     align-items: center;
@@ -506,7 +577,7 @@
     border-radius: 6px;
     margin-top: 8px;
   }
-  /* المصفوفة المتقدمة */
+  
   .matrix-wrap {
     background: white;
     border: 1px solid var(--line);
@@ -540,13 +611,20 @@
   }
   .matrix-cell {
     width: 100%;
-    max-width: 55px;
-    padding: 4px;
+    min-width: 50px;
+    height: 38px;
+    padding: 6px 4px;
     text-align: center;
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    border: 1.5px solid var(--line);
+    border-radius: 5px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
+    -moz-appearance: textfield;
+  }
+  .matrix-cell::-webkit-outer-spin-button,
+  .matrix-cell::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   .matrix-cell:focus {
     outline: 2px solid var(--accent);
@@ -603,7 +681,7 @@
     font-weight: 700;
     pointer-events: auto;
   }
-  /* قسم صيغة الإخراج */
+  
   @keyframes spin { to { transform: rotate(360deg); } }
   .format-section {
     background: var(--bg);
@@ -775,6 +853,18 @@
     color: var(--ink-soft);
     font-size: 13px;
   }
+  footer .signature {
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.3px;
+  }
+  footer .signature strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
   .stats {
     display: flex;
     gap: 16px;
@@ -813,7 +903,7 @@
 
 <div class="grid">
 
-  <!-- الخطوة 1 -->
+  
   <div class="card">
     <span class="step-badge">الخطوة ١</span>
     <h2>أنشئ البرومبت</h2>
@@ -832,7 +922,7 @@
       💡 <strong>نصيحة:</strong> اكتب أي ملاحظات شخصية ضمن المحتوى نفسه (اسم المقرر، الوحدات، ملاحظات خاصة) — الأداة سترسلها للذكاء الاصطناعي ضمن البرومبت.
     </div>
 
-    <!-- محدد وضع التحرير: بسيط / متقدم -->
+    
     <div class="editor-mode">
       <button type="button" class="editor-mode-btn active" data-editor="simple">
         <span>📋 وضع بسيط</span>
@@ -844,9 +934,9 @@
       </button>
     </div>
 
-    <!-- ===== الوضع البسيط ===== -->
+    
     <div id="simpleMode">
-      <!-- قسم الأنواع -->
+      
       <div class="types-section">
         <h3>
           <span>🎯 أنواع الأسئلة وعددها</span>
@@ -874,7 +964,7 @@
             <span class="emoji">📝</span>
             <span>مقالي</span>
           </div>
-          <input type="number" class="type-count" data-type="ESS" value="0" min="0" max="50">
+          <input type="number" class="type-count" data-type="ESS" placeholder="0" min="0" max="50">
         </div>
 
         <div class="type-row" data-type="FIB">
@@ -882,7 +972,7 @@
             <span class="emoji">🔲</span>
             <span>ملء الفراغ</span>
           </div>
-          <input type="number" class="type-count" data-type="FIB" value="0" min="0" max="50">
+          <input type="number" class="type-count" data-type="FIB" placeholder="0" min="0" max="50">
         </div>
 
         <div class="type-row" data-type="NUM">
@@ -890,7 +980,7 @@
             <span class="emoji">🔢</span>
             <span>إجابة رقمية / حسابي</span>
           </div>
-          <input type="number" class="type-count" data-type="NUM" value="0" min="0" max="50">
+          <input type="number" class="type-count" data-type="NUM" placeholder="0" min="0" max="50">
         </div>
 
         <div class="type-row" data-type="MAT">
@@ -898,11 +988,11 @@
             <span class="emoji">🔗</span>
             <span>توصيل / مطابقة</span>
           </div>
-          <input type="number" class="type-count" data-type="MAT" value="0" min="0" max="50">
+          <input type="number" class="type-count" data-type="MAT" placeholder="0" min="0" max="50">
         </div>
       </div>
 
-      <!-- قسم الصعوبة (للوضع البسيط فقط) -->
+      
       <div class="difficulty-section">
         <h3>
           <span>🎚️ مستوى الصعوبة</span>
@@ -924,7 +1014,7 @@
           </label>
         </div>
 
-        <!-- مستوى واحد -->
+        
         <div class="diff-panel" id="panelSingle">
           <div class="diff-slider-wrap">
             <input type="range" id="singleDiff" min="1" max="5" value="3" class="diff-slider">
@@ -939,32 +1029,32 @@
           </div>
         </div>
 
-        <!-- مزيج مخصص -->
+        
         <div class="diff-panel" id="panelMixed" style="display:none;">
           <p class="diff-hint">حدد عدد الأسئلة لكل مستوى صعوبة:</p>
           <div class="diff-row" data-level="easy">
             <span class="diff-emoji">🟢</span>
             <span class="diff-name">سهل (تذكر/فهم)</span>
-            <input type="number" class="diff-count" data-level="easy" value="0" min="0">
+            <input type="number" class="diff-count" data-level="easy" placeholder="0" min="0">
           </div>
           <div class="diff-row" data-level="medium">
             <span class="diff-emoji">🟡</span>
             <span class="diff-name">متوسط (تطبيق)</span>
-            <input type="number" class="diff-count" data-level="medium" value="0" min="0">
+            <input type="number" class="diff-count" data-level="medium" placeholder="0" min="0">
           </div>
           <div class="diff-row" data-level="hard">
             <span class="diff-emoji">🟠</span>
             <span class="diff-name">صعب (تحليل)</span>
-            <input type="number" class="diff-count" data-level="hard" value="0" min="0">
+            <input type="number" class="diff-count" data-level="hard" placeholder="0" min="0">
           </div>
           <div class="diff-row" data-level="expert">
             <span class="diff-emoji">🔴</span>
             <span class="diff-name">صعب جداً (تقييم/إبداع)</span>
-            <input type="number" class="diff-count" data-level="expert" value="0" min="0">
+            <input type="number" class="diff-count" data-level="expert" placeholder="0" min="0">
           </div>
         </div>
 
-        <!-- تدرج تصاعدي -->
+        
         <div class="diff-panel" id="panelProgressive" style="display:none;">
           <p class="diff-hint">سترتب الأسئلة من الأسهل إلى الأصعب تلقائياً، حدد البداية والنهاية:</p>
           <div class="prog-row">
@@ -990,7 +1080,7 @@
       </div>
     </div>
 
-    <!-- ===== الوضع المتقدم ===== -->
+    
     <div id="advancedMode" style="display:none;">
       <div class="advanced-intro">
         <h3>🎛️ الوضع المتقدم</h3>
@@ -1012,50 +1102,50 @@
           <tbody>
             <tr data-type="MC">
               <th>🔤 اختيار من متعدد</th>
-              <td><input type="number" class="matrix-cell" data-type="MC" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MC" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MC" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MC" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MC" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MC" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MC" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MC" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="MC">0</td>
             </tr>
             <tr data-type="TF">
               <th>✓✗ صح/خطأ</th>
-              <td><input type="number" class="matrix-cell" data-type="TF" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="TF" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="TF" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="TF" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="TF" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="TF" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="TF" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="TF" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="TF">0</td>
             </tr>
             <tr data-type="ESS">
               <th>📝 مقالي</th>
-              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="ESS" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="ESS">0</td>
             </tr>
             <tr data-type="FIB">
               <th>🔲 ملء الفراغ</th>
-              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="FIB" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="FIB">0</td>
             </tr>
             <tr data-type="NUM">
               <th>🔢 إجابة رقمية</th>
-              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="NUM" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="NUM">0</td>
             </tr>
             <tr data-type="MAT">
               <th>🔗 توصيل/مطابقة</th>
-              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="easy" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="medium" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="hard" value="0" min="0"></td>
-              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="expert" value="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="easy" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="medium" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="hard" placeholder="0" min="0"></td>
+              <td><input type="number" class="matrix-cell" data-type="MAT" data-level="expert" placeholder="0" min="0"></td>
               <td class="row-sum" data-type="MAT">0</td>
             </tr>
           </tbody>
@@ -1073,7 +1163,7 @@
       </div>
     </div>
 
-    <!-- قسم الخيارات الإضافية (مشترك) -->
+    
     <div class="options-section">
       <h3>⚙️ خيارات إضافية</h3>
 
@@ -1120,7 +1210,7 @@
     <div class="status" id="status1"></div>
   </div>
 
-  <!-- الخطوة 2 -->
+  
   <div class="card">
     <span class="step-badge">الخطوة ٢</span>
     <h2>استخرج الأسئلة</h2>
@@ -1195,24 +1285,22 @@
 
 <footer>
   <p>أداة محلية بالكامل — لا ترسل بياناتك لأي خادم</p>
+  <p class="signature">عمل على هذا المشروع <strong>م. أحمد سعيد العليلي</strong></p>
 </footer>
 
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════
-// 🛡️ طبقة الحماية - Anti-theft Protection Layer
 // ═══════════════════════════════════════════════════
 (function protectApp() {
   'use strict';
 
-  // 1️⃣ منع النقر بالزر الأيمن (Context Menu)
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     return false;
   }, true);
 
-  // 2️⃣ منع اختصارات DevTools والنسخ
   document.addEventListener('keydown', function(e) {
     // F12
     if (e.keyCode === 123) {
@@ -1251,7 +1339,6 @@
     }
   }, true);
 
-  // 3️⃣ كشف فتح DevTools
   let devtoolsOpen = false;
   const threshold = 160;
   setInterval(function() {
@@ -1264,7 +1351,6 @@
     }
   }, 1000);
 
-  // 4️⃣ تعطيل console (يصعّب debugging)
   if (typeof console !== 'undefined') {
     const noop = function() {};
     ['log', 'info', 'warn', 'error', 'debug', 'trace', 'dir'].forEach(function(method) {
@@ -1272,40 +1358,26 @@
     });
   }
 
-  // 5️⃣ منع السحب والإفلات (Drag & Drop) لمنع حفظ الصفحة
   document.addEventListener('dragstart', function(e) {
     if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
       e.preventDefault();
     }
   }, true);
 
-  // 6️⃣ مسح console بشكل دوري (يصعب التتبع)
   setInterval(function() {
     try { console.clear(); } catch(e) {}
   }, 500);
 
-  // 7️⃣ كشف Right-click عبر long-press على الموبايل
   document.addEventListener('touchstart', function(e) {
     if (e.touches.length > 1) e.preventDefault();
   }, { passive: false });
 
-  // 8️⃣ التحقق من النطاق (Domain Lock) — اختياري
-  // قم بتفعيل هذا بعد رفع الموقع وتحديد النطاق
-  /*
-  const allowedDomains = ['your-domain.com', 'your-username.github.io', 'localhost', '127.0.0.1'];
-  const currentDomain = window.location.hostname;
-  if (!allowedDomains.includes(currentDomain) && !currentDomain.endsWith('.your-domain.com')) {
-    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:Arial;direction:rtl;"><h1>🚫 غير مصرح</h1><p>هذه النسخة غير مرخّصة للعمل على هذا النطاق</p></div>';
-    throw new Error('Domain not authorized');
-  }
-  */
 })();
 </script>
 
 <script>
   const $ = id => document.getElementById(id);
 
-  // ===== تحديث المجموع وحالة الصفوف =====
   function updateTotal() {
     let total = 0;
     document.querySelectorAll('.type-count').forEach(input => {
@@ -1323,7 +1395,6 @@
   });
   updateTotal();
 
-  // ===== منطق الصعوبة =====
   const DIFFICULTY_LABELS = {
     1: { ar: 'سهل جداً (تذكر)', en: 'very easy (recall)', desc: 'تذكر معلومات وحقائق مباشرة' },
     2: { ar: 'سهل (فهم)', en: 'easy (understanding)', desc: 'فهم المفاهيم وتفسيرها' },
@@ -1340,7 +1411,6 @@
     expert: 'صعب جداً (تقييم/إبداع)'
   };
 
-  // تبديل أوضاع الصعوبة
   document.querySelectorAll('.diff-mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.diff-mode-btn').forEach(b => b.classList.remove('active'));
@@ -1354,7 +1424,6 @@
     });
   });
 
-  // تبديل وضع المحرر: بسيط / متقدم
   document.querySelectorAll('.editor-mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.editor-mode-btn').forEach(b => b.classList.remove('active'));
@@ -1367,35 +1436,29 @@
     });
   });
 
-  // معرفة الوضع الحالي للمحرر
   function isAdvancedMode() {
     const activeBtn = document.querySelector('.editor-mode-btn.active');
     return activeBtn && activeBtn.dataset.editor === 'advanced';
   }
 
-  // معرفة وضع الصعوبة (في الوضع البسيط)
   function getCurrentMode() {
     if (isAdvancedMode()) return 'advanced';
     return document.querySelector('input[name="diffMode"]:checked').value;
   }
 
-  // تحديث تسمية المستوى الواحد
   $('singleDiff').addEventListener('input', (e) => {
     const val = parseInt(e.target.value);
     $('singleDiffLabel').textContent = DIFFICULTY_LABELS[val].ar;
   });
 
-  // تحديث المزيج
   document.querySelectorAll('.diff-count').forEach(input => {
     input.addEventListener('input', updateDiffValidation);
   });
 
-  // ===== منطق المصفوفة (الوضع المتقدم) =====
   function updateMatrix() {
     const types = ['MC', 'TF', 'ESS', 'FIB', 'NUM', 'MAT'];
     const levels = ['easy', 'medium', 'hard', 'expert'];
 
-    // مجموع الصفوف
     types.forEach(t => {
       let sum = 0;
       document.querySelectorAll(`.matrix-cell[data-type="${t}"]`).forEach(c => {
@@ -1404,7 +1467,6 @@
       document.querySelector(`.row-sum[data-type="${t}"]`).textContent = sum;
     });
 
-    // مجموع الأعمدة
     levels.forEach(lv => {
       let sum = 0;
       document.querySelectorAll(`.matrix-cell[data-level="${lv}"]`).forEach(c => {
@@ -1413,14 +1475,12 @@
       document.querySelector(`.col-sum[data-level="${lv}"]`).textContent = sum;
     });
 
-    // الإجمالي العام
     let grandTotal = 0;
     document.querySelectorAll('.matrix-cell').forEach(c => {
       grandTotal += parseInt(c.value) || 0;
     });
     $('matrixGrandSum').textContent = grandTotal;
 
-    // تحديث totalCount إذا كنا في الوضع المتقدم
     if (getCurrentMode() === 'advanced') {
       $('totalCount').textContent = grandTotal;
     }
@@ -1450,11 +1510,9 @@
     }
   }
 
-  // تحديث المجموع وفحص الصعوبة
   const originalUpdateTotal = updateTotal;
   function updateAll() { originalUpdateTotal(); updateDiffValidation(); }
 
-  // ===== توليد البرومبت =====
   function buildPrompt(content, counts, options, difficulty) {
     const typeNames = {
       MC: 'اختيار من متعدد',
@@ -1465,7 +1523,6 @@
       MAT: 'توصيل/مطابقة'
     };
 
-    // بناء قائمة الأنواع المطلوبة
     const requestedTypes = [];
     let total = 0;
 
@@ -1476,7 +1533,6 @@
       }
     }
 
-    // الخيارات الإضافية
     const extraInstructions = [];
     if (options.shuffleQuestions && difficulty.mode !== 'progressive') {
       extraInstructions.push('🔀 رتّب الأسئلة بترتيب عشوائي (لا تجمع كل نوع معاً، اخلطها)');
@@ -1488,7 +1544,6 @@
       extraInstructions.push('💡 ضع قبل كل سؤال تعليقاً يبدأ بـ # يحتوي شرحاً مختصراً للإجابة الصحيحة');
     }
 
-    // قسم الصعوبة
     let difficultySection = '';
     if (difficulty.mode === 'single') {
       const lbl = DIFFICULTY_LABELS[difficulty.level];
@@ -1515,7 +1570,6 @@
    - وزّع الأسئلة بينهما بتدرج طبيعي
    - ⚠️ لا تخلط الترتيب — احتفظ بالتدرج من الأسهل للأصعب`;
     } else if (difficulty.mode === 'advanced') {
-      // مصفوفة كاملة: نوع × صعوبة
       const lines = [];
       for (const [type, levels] of Object.entries(difficulty.matrix)) {
         for (const [level, count] of Object.entries(levels)) {
@@ -1533,26 +1587,83 @@
       ? `\n\nمتطلبات إضافية:${difficultySection}${extraInstructions.length > 0 ? '\n' + extraInstructions.map(i => '- ' + i).join('\n') : ''}`
       : '';
 
-    return `أنت مساعد لإنشاء أسئلة لمنصة بلاك بورد (Blackboard).
+    return `أنت خبير متخصص في إنشاء أسئلة اختبارات أكاديمية عالية الجودة لمنصة بلاك بورد (Blackboard).
 
-المحتوى المطلوب إنشاء أسئلة عنه (قد يحتوي على ملاحظات شخصية من المستخدم في البداية مثل اسم المقرر أو الوحدات أو تفضيلات معينة — التزم بها):
+🚨 تحذير حاسم قبل أي شيء:
+المحتوى المرفق أدناه (بين علامات """) هو **مادة دراسية** يجب أن تستخرج منها أسئلة.
+قد يحتوي في بدايته على ملاحظات أو توجيهات من المستخدم (مثل: اسم المقرر، تفضيلات معينة، تركيز على فصل، إلخ).
+هذه الملاحظات هي **توجيهات لك** وليست **مادة لإنشاء أسئلة منها**.
+❌ ممنوع منعاً باتاً تحويل أي تعليمة أو ملاحظة من المستخدم إلى سؤال.
+❌ ممنوع إنشاء أسئلة عن "ما طلبه المستخدم" أو "كيف يجب صياغة الأسئلة" أو "عدد الأسئلة المطلوبة".
+✅ الأسئلة يجب أن تكون **عن المفاهيم العلمية/الأكاديمية الفعلية** الموجودة في المادة الدراسية فقط.
+
+═══════════════════════════════════════════════
+📚 المادة الدراسية (المصدر الوحيد لإنشاء الأسئلة)
+═══════════════════════════════════════════════
 """
 ${content}
 """
 
-المطلوب: أنشئ ${total} سؤال **حقيقي ومتعلق بالمحتوى أعلاه** موزعة كالآتي:
+═══════════════════════════════════════════════
+🎯 المهمة المطلوبة
+═══════════════════════════════════════════════
+أنشئ ${total} سؤالاً أكاديمياً عن **المفاهيم العلمية الفعلية** الواردة في المادة الدراسية أعلاه، موزعة كالآتي:
 ${requestedTypes.map(t => '- ' + t).join('\n')}${extraSection}
 
-⚠️ تعليمات صارمة جداً (مهمة جداً جداً):
-1. لا تنسخ أي قالب — كل سؤال يجب أن يكون سؤالاً حقيقياً عن المحتوى
-2. إذا وُجدت ملاحظات شخصية في بداية المحتوى (اسم المقرر، الوحدات، تفضيلات) فالتزم بها
-3. كل سؤال في سطر واحد فقط
-4. افصل الحقول بحرف Tab حقيقي (مفتاح Tab في الكيبورد) — لا تكتب كلمة "TAB" ولا أقواس
-5. لا تكتب ترقيم ولا شرح ولا Markdown
-6. ضع كل الأسئلة داخل code block واحد فقط
-7. التزم بالعدد المطلوب لكل نوع بدقة
+═══════════════════════════════════════════════
+🛡️ قواعد الالتزام بالمحتوى (إلزامية وصارمة)
+═══════════════════════════════════════════════
+1. ❌ ممنوع منعاً باتاً اختراع أو إضافة معلومات من خارج المادة الدراسية
+2. ❌ ممنوع الاعتماد على معرفتك العامة أو معلومات من الإنترنت
+3. ❌ ممنوع الاستنتاج من معلومات غير مذكورة صراحة في النص
+4. ❌ ممنوع تحويل التعليمات أو الملاحظات إلى أسئلة (مثلاً: "كم عدد المعادلات المطلوبة؟" — هذا ممنوع لأنه عن التعليمة وليس عن المادة العلمية)
+5. ❌ ممنوع إنشاء أسئلة "ميتا" عن طريقة الإجابة أو شكل السؤال أو عدد الأسئلة
+6. ✅ كل سؤال يجب أن يكون عن **حقيقة علمية أو مفهوم تقني أو معادلة أو تعريف** موجود في النص
+7. ✅ كل إجابة صحيحة يجب أن تكون قابلة للتحقق منها مباشرة من النص العلمي
+8. ✅ إذا كانت المادة الدراسية لا تكفي لإنشاء العدد المطلوب، أنشئ ما يمكنك من أسئلة عالية الجودة بدلاً من ملء الفراغ
 
-📋 الصيغة (افصل الحقول بـ Tab حقيقي):
+═══════════════════════════════════════════════
+✅ اختبار التحقق الذاتي (طبّقه على كل سؤال قبل كتابته)
+═══════════════════════════════════════════════
+اسأل نفسك عن كل سؤال:
+1. هل هذا السؤال عن مفهوم علمي/تقني/أكاديمي حقيقي؟ (يجب: نعم)
+2. هل يمكنني تحديد الفقرة أو السطر في المادة التي تحتوي على إجابة هذا السؤال؟ (يجب: نعم)
+3. هل السؤال عن "ما طلبه المستخدم" أو "تعليمات الصياغة"؟ (يجب: لا)
+4. هل سيتعلم الطالب شيئاً مفيداً من هذا السؤال عن المادة؟ (يجب: نعم)
+
+إذا كانت إجابة أي من 1، 2، 4 بـ "لا"، أو إجابة 3 بـ "نعم" → احذف السؤال وأنشئ غيره.
+
+═══════════════════════════════════════════════
+🔍 قواعد التدقيق والجودة
+═══════════════════════════════════════════════
+قبل تسليم الأسئلة، راجعها بنفسك مرتين على الأقل، وتأكد من كل سؤال أنه:
+
+✓ السؤال عن مفهوم علمي/أكاديمي حقيقي من المادة (وليس عن التعليمات)
+✓ السؤال واضح وغير مبهم ولا يحتمل أكثر من تفسير
+✓ السؤال مذكور بصياغة عربية صحيحة لغوياً ونحوياً
+✓ الإجابة الصحيحة موجودة فعلاً في النص العلمي وليست استنتاجاً
+✓ الخيارات الخاطئة (للاختيار من متعدد) معقولة وقريبة من الإجابة الصحيحة لتفادي التخمين السهل
+✓ الخيارات الخاطئة ليست خاطئة بشكل واضح أو مضحك (مثل "كل ما سبق صحيح" أو خيارات لا علاقة لها)
+✓ خيار واحد فقط هو الصحيح في أسئلة الاختيار من متعدد
+✓ سؤال صح/خطأ له إجابة قاطعة لا جدال فيها من النص
+✓ سؤال ملء الفراغ له إجابة واحدة محددة وليست مفتوحة لعدة احتمالات
+✓ سؤال الإجابة الرقمية له إجابة رقمية دقيقة مع هامش خطأ منطقي
+✓ سؤال التوصيل به أزواج واضحة لا تتداخل
+✓ لا يوجد تكرار في الأسئلة أو في صياغتها
+✓ الأسئلة تغطي جوانب متنوعة من المادة وليست محصورة في فقرة واحدة
+
+═══════════════════════════════════════════════
+📝 قواعد التنسيق (إلزامية)
+═══════════════════════════════════════════════
+1. كل سؤال في سطر واحد فقط
+2. افصل الحقول بحرف Tab حقيقي (مفتاح Tab في الكيبورد) — لا تكتب كلمة "TAB" ولا أقواس
+3. لا تكتب ترقيم ولا شرح ولا Markdown ولا تعليقات
+4. ضع كل الأسئلة داخل code block واحد فقط
+5. التزم بالعدد المطلوب لكل نوع بدقة
+
+═══════════════════════════════════════════════
+📋 صيغ الأسئلة المقبولة
+═══════════════════════════════════════════════
 
 اختيار من متعدد:
 MC	نص السؤال	الخيار الأول	correct	الخيار الثاني	incorrect	الخيار الثالث	incorrect	الخيار الرابع	incorrect
@@ -1564,16 +1675,18 @@ TF	نص السؤال	false
 مقالي:
 ESS	نص السؤال
 
-ملء فراغ (إجابة واحدة):
+ملء فراغ:
 FIB	نص السؤال مع ____ مكان الفراغ	الإجابة
 
-إجابة رقمية (مع هامش خطأ مسموح):
+إجابة رقمية:
 NUM	نص السؤال الحسابي	الإجابة الرقمية	هامش الخطأ
 
 توصيل/مطابقة:
 MAT	نص السؤال	مطالبة1	إجابة1	مطالبة2	إجابة2	مطالبة3	إجابة3
 
-✅ مثال محلول كامل لكل الأنواع (لاحظ Tab بين الحقول):
+═══════════════════════════════════════════════
+✅ مثال على أسئلة صحيحة (مادة عن السعودية)
+═══════════════════════════════════════════════
 
 MC	ما هي عاصمة المملكة العربية السعودية؟	الرياض	correct	جدة	incorrect	مكة	incorrect	الدمام	incorrect
 TF	تقع المملكة العربية السعودية في قارة آسيا	true
@@ -1582,7 +1695,22 @@ FIB	أكبر صحراء في المملكة هي صحراء ____	الربع ال
 NUM	إذا كانت قيمة الاستثمار 1000 ريال وعائدها 15%، كم العائد بالريال؟	150	1
 MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودية	الرياض	الإمارات	أبوظبي
 
-ابدأ الآن — أسئلة حقيقية عن المحتوى أعلاه، داخل code block، بدون أي تعليق:`;
+═══════════════════════════════════════════════
+❌ أمثلة على أسئلة خاطئة (لا تفعل هذا!)
+═══════════════════════════════════════════════
+
+❌ MC	كم عدد الأسئلة المطلوب كتابتها؟	... (هذا سؤال عن التعليمات، ليس عن المادة)
+❌ TF	النص يطلب كتابة معادلة واحدة فقط	... (هذا سؤال عن طلب المستخدم، ليس مفهوماً علمياً)
+❌ MC	أي توزيع من التالي يوافق ما ورد في التعليمات؟	... (هذا سؤال "ميتا" عن التعليمات)
+
+═══════════════════════════════════════════════
+🚀 ابدأ الآن
+═══════════════════════════════════════════════
+- اقرأ المادة الدراسية بعناية (تجاهل أي تعليمات للمستخدم في بدايتها — هي توجيهات لك فقط)
+- استخرج المفاهيم العلمية والحقائق التقنية الموجودة في النص
+- صُغ منها أسئلة أكاديمية حقيقية
+- راجع كل سؤال: هل هو عن مفهوم علمي حقيقي من المادة، أم عن التعليمات؟ (إذا الثاني، احذفه)
+- ضع كل الأسئلة داخل code block واحد بدون أي شرح أو تعليق خارجي`;
   }
 
   function showStatus(elId, msg, type) {
@@ -1592,8 +1720,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
     setTimeout(() => el.classList.remove('show'), 4000);
   }
 
-  // ===== الخطوة 1 =====
-  // دالة مساعدة: تبني البرومبت من إعدادات الواجهة مع محتوى معين
   function buildPromptFromUI(content) {
     if (!content) return null;
 
@@ -1661,7 +1787,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
     let total = 0;
 
     if (mode === 'advanced') {
-      // في الوضع المتقدم، نستخرج الأنواع من المصفوفة
       const types = ['MC', 'TF', 'ESS', 'FIB', 'NUM', 'MAT'];
       types.forEach(t => {
         let typeSum = 0;
@@ -1672,7 +1797,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
         total += typeSum;
       });
     } else {
-      // الأوضاع الأخرى: نستخدم قسم الأنواع
       document.querySelectorAll('.type-count').forEach(input => {
         const val = parseInt(input.value) || 0;
         counts[input.dataset.type] = val;
@@ -1691,7 +1815,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
       addExplanation: $('addExplanation').checked
     };
 
-    // جمع بيانات الصعوبة
     const difficulty = { mode };
     if (mode === 'single') {
       difficulty.level = parseInt($('singleDiff').value);
@@ -1711,7 +1834,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
       difficulty.start = $('progStart').value;
       difficulty.end = $('progEnd').value;
     } else if (mode === 'advanced') {
-      // بناء المصفوفة
       difficulty.matrix = { MC: {}, TF: {}, ESS: {}, FIB: {}, NUM: {}, MAT: {} };
       document.querySelectorAll('.matrix-cell').forEach(cell => {
         const t = cell.dataset.type;
@@ -1745,7 +1867,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
     }
   });
 
-  // ===== تبديل صيغة الإخراج =====
   document.querySelectorAll('.format-opt').forEach(opt => {
     opt.addEventListener('click', () => {
       document.querySelectorAll('.format-opt').forEach(o => o.classList.remove('active'));
@@ -1754,7 +1875,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
     });
   });
 
-  // ===== مولّد QTI 2.1 =====
   function escapeXml(text) {
     return String(text)
       .replace(/&/g, '&amp;')
@@ -1768,7 +1888,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
     return Math.floor(Math.random() * 90000000) + 10000000;
   }
 
-  // بناء assessmentItem لسؤال واحد
   function buildAssessmentItem(line, index) {
     const parts = line.split('\t').map(p => p.trim());
     const type = parts[0];
@@ -1779,7 +1898,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
 <assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_v2p1.xsd" adaptive="false" timeDependent="false" identifier="${id}">`;
 
     if (type === 'MC' || type === 'TF') {
-      // اختيار من متعدد أو صح/خطأ
       const question = parts[1] || '';
       const choices = [];
       const correctIds = [];
@@ -1789,7 +1907,6 @@ MAT	وصّل كل دولة بعاصمتها	مصر	القاهرة	السعودي
         choices.push({ id: `${id}_true`, text: 'صواب', correct: answer === 'true' });
         choices.push({ id: `${id}_false`, text: 'خطأ', correct: answer === 'false' });
       } else {
-        // MC: parts[2,4,6,8] خيارات، parts[3,5,7,9] correct/incorrect
         for (let i = 2; i < parts.length; i += 2) {
           if (!parts[i]) continue;
           const text = parts[i];
@@ -1827,7 +1944,6 @@ ${choices.map(c => `<simpleChoice identifier="${c.id}" fixed="true">${escapeXml(
 </responseProcessing>`;
 
     } else if (type === 'ESS') {
-      // مقالي
       const question = parts[1] || '';
       xml += `<responseDeclaration cardinality="single" baseType="string" identifier="RESPONSE"/>
 <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"><defaultValue><value>0</value></defaultValue></outcomeDeclaration>
@@ -1839,7 +1955,6 @@ ${choices.map(c => `<simpleChoice identifier="${c.id}" fixed="true">${escapeXml(
 </itemBody>`;
 
     } else if (type === 'FIB') {
-      // ملء الفراغ
       const question = parts[1] || '';
       const answer = parts[2] || '';
       xml += `<responseDeclaration cardinality="single" baseType="string" identifier="BLANK-1">
@@ -1855,7 +1970,6 @@ ${choices.map(c => `<simpleChoice identifier="${c.id}" fixed="true">${escapeXml(
 </itemBody>`;
 
     } else if (type === 'NUM') {
-      // إجابة رقمية
       const question = parts[1] || '';
       const answer = parts[2] || '0';
       const tolerance = parseFloat(parts[3] || '0');
@@ -1885,14 +1999,13 @@ ${choices.map(c => `<simpleChoice identifier="${c.id}" fixed="true">${escapeXml(
 </responseCondition>
 </responseProcessing>`;
     } else {
-      return null; // نوع غير مدعوم في QTI حالياً
+      return null;
     }
 
     xml += `</assessmentItem>`;
     return { xml, itemId };
   }
 
-  // بناء imsmanifest.xml
   function buildManifest(items) {
     const dependencies = items.map(it => `<dependency identifierref="${it.itemId}"/>`).join('');
     const itemResources = items.map(it =>
@@ -1913,7 +2026,6 @@ ${itemResources}
 </manifest>`;
   }
 
-  // بناء question_bank.xml
   function buildQuestionBank(items, title) {
     const refs = items.map(it => `<assessmentItemRef identifier="${it.itemId}" href="${it.itemId}.xml"/>`).join('');
     return `<?xml version="1.0" encoding="UTF-8"?>
@@ -1926,7 +2038,6 @@ ${refs}
 </assessmentTest>`;
   }
 
-  // بناء وتنزيل ملف QTI ZIP
   async function buildAndDownloadQTI(cleanedLines) {
     if (typeof JSZip === 'undefined') {
       showStatus('status2', '❌ مكتبة JSZip لم تُحمّل. تحقق من الإنترنت', 'error');
@@ -1967,7 +2078,6 @@ ${refs}
     return items.length;
   }
 
-  // ===== الخطوة 2 (محدّثة) =====
   $('processResponse').addEventListener('click', async () => {
     const response = $('aiResponse').value.trim();
     if (!response) {
@@ -2014,7 +2124,6 @@ ${refs}
       return;
     }
 
-    // إحصائيات
     const stats = { MC: 0, TF: 0, ESS: 0, FIB: 0, OTHER: 0 };
     cleaned.forEach(line => {
       const type = line.split('\t')[0] || line.split(/\s/)[0];
@@ -2028,7 +2137,6 @@ ${refs}
     $('statOther').textContent = stats.ESS + stats.FIB + stats.OTHER;
     $('statsBox').style.display = 'flex';
 
-    // معاينة
     const preview = $('preview');
     preview.innerHTML = cleaned.slice(0, 5).map(line => {
       const parts = line.split('\t');
@@ -2038,7 +2146,6 @@ ${refs}
     }).join('') + (cleaned.length > 5 ? `<div class="preview-line" style="text-align:center;color:var(--ink-soft);">+ ${cleaned.length - 5} أسئلة أخرى</div>` : '');
     preview.classList.add('show');
 
-    // نوع الإخراج
     const format = document.querySelector('input[name="format"]:checked').value;
 
     if (format === 'qti') {
@@ -2048,7 +2155,6 @@ ${refs}
         showStatus('status2', `✅ تم تنزيل ${count} سؤال بصيغة QTI 2.1 — جاهز لبنك الأسئلة`, 'success');
       }
     } else {
-      // TXT تقليدي
       const fileContent = cleaned.join('\n');
       const blob = new Blob(['\uFEFF' + fileContent], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
